@@ -42,9 +42,9 @@
     "rxjs": "6.5.4",
     "store": "2.0.12",
     "tslib": "1.10.0",
-    "url-join": "latest",
+    "url-join": "^4.0.1",
     "webpack": "4.41.6",
-    "webpack-dev-server": "3.10.3",
+    "webpack-dev-server": "^3.11.0",
     "zone.js": "0.10.2"
   },
   "devDependencies": {
