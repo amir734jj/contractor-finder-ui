@@ -1,46 +1,48 @@
-import {Component, OnInit} from '@angular/core';
-import {setTheme} from 'ngx-bootstrap';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {setTheme} from 'ngx-bootstrap/utils';
 import {AuthenticationService} from './services/authentication.service';
 import {Router} from '@angular/router';
-import {Role} from './models/RoleEnum';
 import {ProfileType} from './types/profile.type';
-import {clearAuthInfo, resolveAuthInfo} from './utilities/auth.utility';
-import {Profile} from './models/entities/Profile';
+import {CachedAuthenticationService} from './services/cached.authentication.service';
+import {Subscription, timer} from 'rxjs';
+import {Role} from './models/RoleEnum';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'Wizpiti';
   public navBarCollapsed = true;
-  public authenticated: () => boolean;
   public profile: ProfileType;
+  public authenticated = false;
+  private authenticatedSubscription: Subscription;
   public roles = Role;
-
-  constructor(private router: Router, private authenticationService: AuthenticationService) {
+  constructor(private router: Router, private authenticationService: AuthenticationService,
+              private cachedAuthenticationService: CachedAuthenticationService) {
     setTheme('bs3');
-
-    this.authenticated = () => {
-      const {item1 = false, item2 = new Profile()} = resolveAuthInfo();
-      this.profile = item2;
-      return item1;
-    };
   }
 
   ngOnInit() {
     // If session key exist then continue
-    if (this.authenticated()) {
+    if (this.authenticated) {
       this.authenticationService.isAuthenticated()
         .then(async response => {
-          const [authenticated, profile] = response;
-          this.profile = profile;
-          if (!authenticated) {
-            clearAuthInfo();
+          if (!response) {
+            this.cachedAuthenticationService.clearAuthInfo();
             await this.router.navigate(['./login']);
           }
         });
     }
+
+    this.authenticatedSubscription = timer(0, 100)
+      .subscribe(() => {
+        this.authenticated = this.cachedAuthenticationService.resolveAuthInfo().authenticated;
+      });
+  }
+
+  ngOnDestroy() {
+    this.authenticatedSubscription.unsubscribe();
   }
 }

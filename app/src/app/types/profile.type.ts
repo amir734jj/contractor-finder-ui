@@ -1,5 +1,7 @@
-import {Role} from '../models/RoleEnum';
+import {Profile} from '../models/entities/Profile';
 
-export interface ProfileType { role: Role; }
-
-export type ProfileWithTokenType = ProfileType & { token: string, timestamp: Date };
+export type ProfileType = {
+  token: string;
+  timestamp: Date;
+  expires: Date
+} & Profile;

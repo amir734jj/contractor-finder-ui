@@ -3,40 +3,46 @@ import {HttpClient} from '@angular/common/http';
 import {LoginRequest} from '../models/authentication.service/login/LoginRequest';
 import {RegisterRequest} from '../models/authentication.service/register/RegisterRequest';
 import route from '../utilities/route.utility';
-import {Role} from '../models/RoleEnum';
 import * as jwtDecode from 'jwt-decode';
-import {ProfileType, ProfileWithTokenType} from '../types/profile.type';
-import {setAuthInfo, clearAuthInfo} from '../utilities/auth.utility';
+import {ProfileType} from '../types/profile.type';
+import * as _ from 'lodash';
+import {CachedAuthenticationService} from './cached.authentication.service';
+import {RouteStoreUtility} from '../utilities/injectables/store/route.store.utility';
 
 @Injectable()
 export class AuthenticationService {
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private routeStoreUtility: RouteStoreUtility,
+              private cachedAuthenticationService: CachedAuthenticationService) {
   }
 
-  async isAuthenticated(): Promise<[boolean, ProfileType]> {
-    const response = await this.http.get<{ role: Role }>(route('account')).toPromise();
+  async isAuthenticated(): Promise<boolean> {
+    const response = await this.http.get<{}>(route('account')).toPromise();
 
-    return [!!Object.keys(response).length, response];
+    return _.size(response) !== 0;
   }
 
   async login(loginRequest: LoginRequest) {
-    const response = await this.http.post<ProfileWithTokenType>(route('account', 'login'), loginRequest).toPromise();
+    const response = await this.http.post<ProfileType>(route('account', 'login'), loginRequest).toPromise();
 
     if (response.token) {
       const jwtMetadata = jwtDecode<{}>(response.token);
       // store email and jwt token in local storage to keep userRef logged in between page refreshes
-      setAuthInfo({...jwtMetadata, ...response, timestamp: new Date()});
+      this.cachedAuthenticationService.setAuthInfo({...jwtMetadata, ...response, timestamp: new Date()});
     }
 
     return response;
   }
 
-  async register(role: Role, registerRequest: RegisterRequest) {
-    return await this.http.post(route('account', 'register', role.toString()), registerRequest, {responseType: 'text'}).toPromise();
+  async register(registerRequest: RegisterRequest) {
+    return await this.http.post(route('account', 'register'), registerRequest, {responseType: 'text'}).toPromise();
   }
 
   async logout() {
-    clearAuthInfo();
+    this.cachedAuthenticationService.clearAuthInfo();
+
+    this.routeStoreUtility.store = this.routeStoreUtility.store.clear();
+
     return await this.http.post(route('account', 'logout'), null, {responseType: 'text'}).toPromise();
   }
 }

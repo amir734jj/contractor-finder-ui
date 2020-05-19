@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {appRoutes} from './RouterConfig';
-import {RouteReuseStrategy, RouterModule} from '@angular/router';
+import {RouteReuseStrategy, RouterModule, UrlSerializer} from '@angular/router';
 import {BoardModule} from './modules/board.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ContractorModule} from './modules/contractor.module';
@@ -21,6 +21,10 @@ import {UserModule} from './modules/user.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CustomCanActivate} from './utilities/injectables/custom.can.activate';
 import {CustomReuseStrategy} from './utilities/injectables/custom.reuse.strategy.utility';
+import {RouteStoreUtility} from './utilities/injectables/store/route.store.utility';
+import {ErrorHandlerStoreUtility} from './utilities/injectables/store/error.handler.store.utility';
+import {LowerCaseUrlSerializer} from './utilities/injectables/custom.url.serializer.utility';
+import {CachedAuthenticationService} from './services/cached.authentication.service';
 
 @NgModule({
   declarations: [
@@ -48,11 +52,16 @@ import {CustomReuseStrategy} from './utilities/injectables/custom.reuse.strategy
     FormsModule,
     BrowserAnimationsModule
   ],
-  providers: [CustomCanActivate, {
+  providers: [CustomCanActivate, CachedAuthenticationService, {
     provide: HTTP_INTERCEPTORS,
     useClass: JwtInterceptor,
     multi: true
-  }, {provide: RouteReuseStrategy, useClass: CustomReuseStrategy}],
+  },
+    {provide: RouteReuseStrategy, useClass: CustomReuseStrategy},
+    {provide: UrlSerializer, useClass: LowerCaseUrlSerializer},
+    ErrorHandlerStoreUtility,
+    RouteStoreUtility
+  ],
   exports: [ ],
   bootstrap: [AppComponent]
 })
