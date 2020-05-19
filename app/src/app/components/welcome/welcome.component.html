@@ -1,10 +1,9 @@
-<div class="page-header">
-  <h3>
-    Welcome {{ userInfo.name() }}
-    <span class="label label-default"> {{ roleToString(userInfo.role) }} </span>
-  </h3>
-
-  <pre>
-{{ userInfo | json }}
-  </pre>
+<div class="container">
+  <div class="jumbotron">
+    <h2> Welcome to Contractor-Finder-UI portal </h2>
+    <p>
+      You need to be authenticated to use any feature of this website. Please review <a
+      [routerLink]="['/about']">about</a> page if you are a first time user.
+    </p>
+  </div>
 </div>

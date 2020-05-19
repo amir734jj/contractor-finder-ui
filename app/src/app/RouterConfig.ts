@@ -14,7 +14,7 @@ import {UsersComponent} from './components/users/users.component';
 import {ContractorBoardComponent} from './components/contractor/board/contractor-board.component';
 import {CustomCanActivate} from './utilities/injectables/custom.can.activate';
 import {RoutesDataType} from './types/router.data.type';
-import {ShowcaseProjectAddComponent} from "./components/profile/contractor/showcase/showcase-project-add.component";
+import {ShowcaseProjectAddComponent} from './components/profile/contractor/showcase/showcase-project-add.component';
 
 let appRoutes: Routes = _.map([
 	{path: '', component: BoardComponent, data: {allowAnonymous: true}},

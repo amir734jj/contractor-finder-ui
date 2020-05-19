@@ -8,6 +8,7 @@ import {ProfileType} from '../types/profile.type';
 import * as _ from 'lodash';
 import {CachedAuthenticationService} from './cached.authentication.service';
 import {RouteStoreUtility} from '../utilities/injectables/store/route.store.utility';
+import {Role} from '../models/RoleEnum';
 
 @Injectable()
 export class AuthenticationService {
@@ -34,8 +35,8 @@ export class AuthenticationService {
     return response;
   }
 
-  async register(registerRequest: RegisterRequest) {
-    return await this.http.post(route('account', 'register'), registerRequest, {responseType: 'text'}).toPromise();
+  async register(role: Role, registerRequest: RegisterRequest) {
+    return await this.http.post(route('account', 'register', role), registerRequest, {responseType: 'text'}).toPromise();
   }
 
   async logout() {

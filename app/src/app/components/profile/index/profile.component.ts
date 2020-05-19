@@ -37,8 +37,7 @@ export class ProfileComponent implements OnInit {
 
   bind() {
     this.form = new FormGroup({
-      firstname: new FormControl(this.profile.firstname, Validators.required),
-      lastname: new FormControl(this.profile.lastname, Validators.required),
+      name: new FormControl(this.profile.name, Validators.required),
       description: new FormControl(this.profile.description, Validators.required),
       email: new FormControl(this.profile.email, [
         Validators.required,
@@ -59,7 +58,7 @@ export class ProfileComponent implements OnInit {
     event.preventDefault();
 
     this.profileService.save(_.assign({}, this.profile, this.form.value))
-      .subscribe(_ => {
+      .subscribe(() => {
         this.handleGetProfile();
       });
   }
