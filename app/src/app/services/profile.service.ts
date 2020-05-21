@@ -11,10 +11,10 @@ export class ProfileService {
   }
 
   get() {
-    return this.http.get<Profile>(route('profile'));
+    return this.http.get<Profile>(route('profile')).toPromise();
   }
 
   save(profile: Profile) {
-    return this.http.post<Profile>(route('profile'), profile);
+    return this.http.post<Profile>(route('profile'), profile).toPromise();
   }
 }

@@ -1,5 +1,6 @@
 import {Role} from '../RoleEnum';
 import {AbstractUserEntity} from '../abstracts/AbstractUserEntity';
+import {Photo} from './Photo';
 
 export default class User extends AbstractUserEntity {
     id: string;
@@ -9,5 +10,5 @@ export default class User extends AbstractUserEntity {
     email: string;
     phoneNumber: string;
     role: Role;
-    photo: string;
+    photo: Photo;
 }

@@ -22,41 +22,21 @@
           <input type="tel" class="form-control" id="phoneNumber" formControlName="phoneNumber" name="phoneNumber"/>
         </div>
         <div class="form-group">
-          <label for="description">Short Description</label>
+          <label for="description">Description</label>
           <textarea type="description" class="form-control textarea-disable-horizontal-resize" id="description"
                     formControlName="description"
                     name="description"></textarea>
         </div>
         <div class="form-group">
-          <label for="photo">Photo:</label>
-          <div class="center row" id="photo">
-            <div class="col-sm-4">
-              <ngx-file-drop
-                      dropZoneLabel="Drop files here"
-                      (onFileDrop)="dropped($event)"
-                      (onFileOver)="fileOver($event)"
-                      (onFileLeave)="fileLeave($event)"
-                      multiple="false"
-                      accept="image/*"
-                      dropZoneClassName="custom-dropzone-style"
-                      contentClassName="custom-dropzone-content"
-              >
-                <ng-template ngx-file-drop-content-tmp
-                             let-openFileSelector="openFileSelector">
-                  <div class="btn-group btn-group-justified">
-                    <button class="btn btn-primary half" type="button" (click)="openFileSelector()">Browse</button>
-                    <button class="btn btn-danger half" type="button" (click)="deleteImage()">Delete</button>
-                  </div>
-                </ng-template>
-              </ngx-file-drop>
-            </div>
-            <div *ngIf="profile.photo" class="col-sm-8">
-              <img [src]="imageService.downloadUrl(profile.photo)"
-                   alt="profile-image"
-                   class="img-thumbnail profile-image-thumbnail pull-right"/>
-            </div>
+          <label for="photo">Photo</label>
+          <div class="center">
+            <file-upload id="photo" formControlName="photo" [multiple]="multiple" [animation]="animation"></file-upload>
           </div>
         </div>
+      </div>
+
+      <div class="col-lg-6" *ngIf="photoUrl">
+        <img [src]="photoUrl"  alt="photo" class="img-responsive"/>
       </div>
 
       <div *ngIf="profile.role == roles.Contractor && profile.contractor" class="col-lg-6">
