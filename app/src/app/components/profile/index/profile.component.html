@@ -3,9 +3,7 @@
 
   <form (submit)="handleSaveProfile($event)" [formGroup]="form">
     <div class="row-fluid">
-      <div class="col-lg-6">
-        <h4> Basic Profile </h4>
-
+      <div class="col-sm-9">
         <div class="form-group">
           <span class="label label-default">{{ roleToString(profile.role) }}</span>
         </div>
@@ -27,7 +25,7 @@
                     formControlName="description"
                     name="description"></textarea>
         </div>
-        <div class="form-group">
+        <div class="form-group hidden-xs">
           <label for="photo">Photo</label>
           <div class="center">
             <file-upload id="photo" formControlName="photo" [multiple]="multiple" [animation]="animation"></file-upload>
@@ -35,12 +33,13 @@
         </div>
       </div>
 
-      <div class="col-lg-6" *ngIf="photoUrl">
-        <img [src]="photoUrl"  alt="photo" class="img-responsive"/>
-      </div>
+      <div class="col-sm-3 hidden-xs" *ngIf="photoUrl">
+        <div class="margin-top-lg">
+          <img [src]="photoUrl"  alt="photo" class="img-responsive"/>
+        </div>
 
-      <div *ngIf="profile.role == roles.Contractor && profile.contractor" class="col-lg-6">
-        <app-contractor-profile [(contractor)]="profile.contractor"></app-contractor-profile>
+        <hr />
+        <button class="btn btn-danger" (click)="deletePhoto()"> Delete </button>
       </div>
 
       <div class="col-sm-12">

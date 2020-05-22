@@ -37,6 +37,10 @@ export class ProfileComponent implements OnInit {
   }
 
   bind() {
+    if (this.form) {
+      this.form.get('photo').setValue([]);
+    }
+
     this.form = new FormGroup({
       photo: new FormControl(null, FileUploadValidators.filesLimit(1)),
       name: new FormControl(this.profile.name, Validators.required),
@@ -70,5 +74,14 @@ export class ProfileComponent implements OnInit {
 
   get photoUrl(): string {
     return this.profile.photo ? this.imageService.downloadUrl(this.profile.photo) : '';
+  }
+
+  async deletePhoto() {
+    this.profile.photo = null;
+
+    this.profileService.save(_.assign({}, this.profile, _.pick(this.form.value, 'name', 'description', 'email', 'phoneNumber')))
+      .then(() => {
+        this.handleGetProfile();
+      });
   }
 }

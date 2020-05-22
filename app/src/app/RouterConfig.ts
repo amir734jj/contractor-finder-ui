@@ -14,33 +14,35 @@ import {UsersComponent} from './components/users/users.component';
 import {ContractorBoardComponent} from './components/contractor/board/contractor-board.component';
 import {CustomCanActivate} from './utilities/injectables/custom.can.activate';
 import {RoutesDataType} from './types/router.data.type';
-import {ShowcaseProjectAddComponent} from './components/profile/contractor/showcase/showcase-project-add.component';
+import {ShowcaseProjectAddComponent} from './components/management/contractor/showcase/showcase-project-add.component';
+import {ManagementComponent} from './components/management/index/management.component';
 
 let appRoutes: Routes = _.map([
-	{path: '', component: BoardComponent, data: {allowAnonymous: true}},
-	{path: 'home', component: BoardComponent, data: {allowAnonymous: true}},
-	{path: 'about', component: AboutComponent, data: {allowAnonymous: true}},
-	{path: 'login', component: LoginComponent, data: {disallowAuthenticated: true}},
-	{path: 'register', component: RegisterComponent, data: {disallowAuthenticated: true}},
-	{path: 'logout', component: LogoutComponent, data: {allowAnonymous: false}},
-	{path: 'welcome', component: WelcomeComponent, data: {allowAnonymous: false}},
-	{path: 'board', component: BoardComponent, data: {allowAnonymous: false}},
-	{path: 'user', component: UsersComponent, data: {allowAnonymous: false}},
-	{
-		path: 'contractor', data: {allowAnonymous: false}, component: ContractorBoardComponent, children: [
-			{path: ':id', component: ContractorIndexComponent}
-		]
-	},
-	{
-		path: 'profile', component: ProfileComponent, data: {allowAnonymous: false}, children: [
-			{path: 'contractor/showcase/add', component: ShowcaseProjectAddComponent}
-		]
-	},
+  {path: '', component: BoardComponent, data: {allowAnonymous: true}},
+  {path: 'home', component: BoardComponent, data: {allowAnonymous: true}},
+  {path: 'about', component: AboutComponent, data: {allowAnonymous: true}},
+  {path: 'login', component: LoginComponent, data: {disallowAuthenticated: true}},
+  {path: 'register', component: RegisterComponent, data: {disallowAuthenticated: true}},
+  {path: 'logout', component: LogoutComponent, data: {allowAnonymous: false}},
+  {path: 'welcome', component: WelcomeComponent, data: {allowAnonymous: false}},
+  {path: 'manage', component: ManagementComponent, data: {allowAnonymous: false}},
+  {path: 'board', component: BoardComponent, data: {allowAnonymous: false}},
+  {path: 'user', component: UsersComponent, data: {allowAnonymous: false}},
+  {
+    path: 'contractor', data: {allowAnonymous: false}, component: ContractorBoardComponent, children: [
+      {path: ':id', component: ContractorIndexComponent}
+    ]
+  },
+  {
+    path: 'profile', component: ProfileComponent, data: {allowAnonymous: false}, children: [
+      {path: 'contractor/showcase/add', component: ShowcaseProjectAddComponent}
+    ]
+  },
 ] as Route | { data: RoutesDataType }, x => ({...x, canActivate: [CustomCanActivate]} as Route));
 
 appRoutes = appRoutes.map(x => ({
-	...x,
-	canActivate: [CustomCanActivate]
+  ...x,
+  canActivate: [CustomCanActivate]
 }));
 
 export {appRoutes};

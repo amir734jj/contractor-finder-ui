@@ -5,7 +5,7 @@ import {Router} from '@angular/router';
 import {ProfileType} from './types/profile.type';
 import {CachedAuthenticationService} from './services/cached.authentication.service';
 import {Subscription, timer} from 'rxjs';
-import {Role} from './models/RoleEnum';
+import {Role, RoleToString} from './models/RoleEnum';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +19,8 @@ export class AppComponent implements OnInit, OnDestroy {
   public authenticated = false;
   private authenticatedSubscription: Subscription;
   public roles = Role;
+  public roleToString = RoleToString;
+
   constructor(private router: Router, private authenticationService: AuthenticationService,
               private cachedAuthenticationService: CachedAuthenticationService) {
     setTheme('bs3');
@@ -38,7 +40,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.authenticatedSubscription = timer(0, 100)
       .subscribe(() => {
-        this.authenticated = this.cachedAuthenticationService.resolveAuthInfo().authenticated;
+        const { authenticated, profile } = this.cachedAuthenticationService.resolveAuthInfo();
+        this.authenticated = authenticated;
+        this.profile = profile;
       });
   }
 

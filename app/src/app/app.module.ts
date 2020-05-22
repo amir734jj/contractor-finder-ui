@@ -24,6 +24,7 @@ import {RouteStoreUtility} from './utilities/injectables/store/route.store.utili
 import {ErrorHandlerStoreUtility} from './utilities/injectables/store/error.handler.store.utility';
 import {LowerCaseUrlSerializer} from './utilities/injectables/custom.url.serializer.utility';
 import {CachedAuthenticationService} from './services/cached.authentication.service';
+import {ManagementModule} from './modules/management.module';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import {CachedAuthenticationService} from './services/cached.authentication.serv
     UserModule,
     ContractorModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ManagementModule
   ],
   providers: [CustomCanActivate, CachedAuthenticationService, {
     provide: HTTP_INTERCEPTORS,

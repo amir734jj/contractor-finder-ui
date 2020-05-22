@@ -1,15 +1,10 @@
 import User from './User';
 import {SpecialityEnum} from '../SpecialityEnum';
-import {AbstractUserEntity} from '../abstracts/AbstractUserEntity';
 import {ShowcaseProject} from './ShowcaseProject';
 
-export default class Contractor extends AbstractUserEntity {
+export default class Contractor {
   id: string;
-  userRef: User = new User();
+  userRef: User;
   speciality: SpecialityEnum[];
   showcaseProjects: ShowcaseProject[];
-
-  name(): string {
-    return this.userRef.name();
-  }
 }

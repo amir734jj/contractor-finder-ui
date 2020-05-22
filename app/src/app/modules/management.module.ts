@@ -3,14 +3,14 @@ import {CommonModule} from '@angular/common';
 import {AppRoutingModule} from '../app-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {ProfileComponent} from '../components/profile/index/profile.component';
 import {ProfileService} from '../services/profile.service';
 import {ImageService} from '../services/image.service';
 import {AccountModule} from './account.module';
-import {ContractorProfileComponent} from '../components/management/contractor/index/contractor-profile.component';
 import {MatSelectModule} from '@angular/material/select';
-import {ShowcaseProjectAddComponent} from '../components/management/contractor/showcase/showcase-project-add.component';
 import {FileUploadModule} from '@iplab/ngx-file-upload';
+import {ManagementComponent} from '../components/management/index/management.component';
+import {ContractorProfileComponent} from '../components/management/contractor/index/contractor-profile.component';
+import {ShowcaseProjectAddComponent} from '../components/management/contractor/showcase/showcase-project-add.component';
 
 @NgModule({
   imports: [
@@ -24,9 +24,9 @@ import {FileUploadModule} from '@iplab/ngx-file-upload';
     FileUploadModule
   ],
   providers: [ProfileService, ImageService],
-  declarations: [ProfileComponent],
-  exports: [ProfileComponent]
+  declarations: [ManagementComponent, ContractorProfileComponent, ShowcaseProjectAddComponent],
+  exports: [ManagementComponent]
 })
-export class ProfileModule {
+export class ManagementModule {
 
 }

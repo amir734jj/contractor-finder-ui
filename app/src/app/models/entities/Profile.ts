@@ -5,7 +5,6 @@ export class Profile {
   name: string;
   email: string;
   role: Role;
-  roles: string[];
   phoneNumber: string;
   description: string;
   photo: string;
