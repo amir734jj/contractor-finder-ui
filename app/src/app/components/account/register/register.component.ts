@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from '../../../services/authentication.service';
 import {Router} from '@angular/router';
-import {Role, RoleNameTable} from '../../../models/RoleEnum';
+import {Role, RoleNameTable} from '../../../models/enums/RoleEnum';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {FormErrorTable, resolveFormGroupErrors} from '../../../utilities/form.utility';
 

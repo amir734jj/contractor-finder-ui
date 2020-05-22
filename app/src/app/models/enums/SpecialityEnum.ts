@@ -1,4 +1,4 @@
-import {EnumToString, ResolveEnumNameTable} from '../utilities/enum.utility';
+import {EnumToString, ResolveEnumNameTable} from '../../utilities/enum.utility';
 
 export enum SpecialityEnum {
   Electrician = 0,

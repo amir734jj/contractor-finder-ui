@@ -5,7 +5,7 @@ import {Router} from '@angular/router';
 import {ProfileType} from './types/profile.type';
 import {CachedAuthenticationService} from './services/cached.authentication.service';
 import {Subscription, timer} from 'rxjs';
-import {Role, RoleToString} from './models/RoleEnum';
+import {Role, RoleToString} from './models/enums/RoleEnum';
 
 @Component({
   selector: 'app-root',

@@ -6,7 +6,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ImageService} from '../../../services/image.service';
 import {FormErrorTable} from '../../../utilities/form.utility';
 import {NGXLogger} from 'ngx-logger';
-import {Role, RoleToString} from '../../../models/RoleEnum';
+import {Role, RoleToString} from '../../../models/enums/RoleEnum';
 import * as _ from 'lodash';
 import {FileUploadValidators} from '@iplab/ngx-file-upload';
 

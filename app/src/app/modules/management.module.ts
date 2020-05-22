@@ -13,6 +13,7 @@ import {ContractorProfileComponent} from '../components/management/contractor/in
 import {ShowcaseProjectAddComponent} from '../components/management/contractor/showcase/showcase-project-add.component';
 import {HomeownerProjectComponent} from '../components/management/homeowner/homeownerproject/homeowner-project.component';
 import {HomeownerIndexComponent} from '../components/management/homeowner/index/homeowner-index.component';
+import {HomeownerManageService} from '../services/homeowner.manage.service';
 
 @NgModule({
   imports: [
@@ -25,7 +26,7 @@ import {HomeownerIndexComponent} from '../components/management/homeowner/index/
     MatSelectModule,
     FileUploadModule
   ],
-  providers: [ProfileService, ImageService],
+  providers: [ProfileService, ImageService, HomeownerManageService],
   declarations: [ManagementComponent,
     ContractorProfileComponent,
     ShowcaseProjectAddComponent,

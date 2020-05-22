@@ -1,4 +1,4 @@
-import {Role} from '../RoleEnum';
+import {Role} from '../enums/RoleEnum';
 import {Photo} from './Photo';
 
 export default class User {

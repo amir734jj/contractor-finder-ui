@@ -1,5 +1,5 @@
 import {Component, DoCheck, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {SpecialityNameTable} from '../../../../models/SpecialityEnum';
+import {SpecialityNameTable} from '../../../../models/enums/SpecialityEnum';
 import Contractor from '../../../../models/entities/Contractor';
 import {Router} from '@angular/router';
 

@@ -1,1 +1,13 @@
-<p>homeowner-index works!</p>
+<div class="container">
+  <app-form-validation-error [error-table]="errorTable"></app-form-validation-error>
+
+  <form (submit)="handleSetAddress($event)" [formGroup]="form" autocomplete="on">
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input type="text" class="form-control" id="address" formControlName="address" name="address"
+             required="required"/>
+    </div>
+
+    <button class="btn btn-default" type="submit">Submit</button>
+  </form>
+</div>

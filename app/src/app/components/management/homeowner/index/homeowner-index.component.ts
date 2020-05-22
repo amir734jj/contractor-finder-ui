@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormErrorTable} from '../../../../utilities/form.utility';
+import {HomeownerManageService} from '../../../../services/homeowner.manage.service';
+import {HomeownerExtendedProfile} from '../../../../models/management/HomeownerExtendedProfile';
 
 @Component({
   selector: 'app-homeowner-index',
@@ -7,9 +11,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeownerIndexComponent implements OnInit {
 
-  constructor() { }
+  form: FormGroup;
+  errorTable: FormErrorTable = [];
+  private profile: HomeownerExtendedProfile = { address: '' };
 
-  ngOnInit(): void {
+  constructor(private homeownerManageService: HomeownerManageService) {
+    this.bind();
   }
 
+  async ngOnInit() {
+    this.profile = await this.homeownerManageService.get();
+    this.bind();
+  }
+
+  bind() {
+    this.form = new FormGroup({
+      address: new FormControl(this.profile.address, Validators.required),
+    });
+  }
+
+  async handleSetAddress(event: Event) {
+    event.preventDefault();
+
+    await this.homeownerManageService.update(this.form.value);
+  }
 }

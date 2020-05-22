@@ -1,5 +1,5 @@
 import User from './User';
-import {SpecialityEnum} from '../SpecialityEnum';
+import {SpecialityEnum} from '../enums/SpecialityEnum';
 import {ShowcaseProject} from './ShowcaseProject';
 
 export default class Contractor {

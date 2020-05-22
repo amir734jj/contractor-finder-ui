@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CachedAuthenticationService} from '../../../services/cached.authentication.service';
 import {Profile} from '../../../models/entities/Profile';
-import {Role} from '../../../models/RoleEnum';
+import {Role} from '../../../models/enums/RoleEnum';
 
 @Component({
   selector: 'app-management',

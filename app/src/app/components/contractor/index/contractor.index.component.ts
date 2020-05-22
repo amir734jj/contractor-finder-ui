@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ContractorService} from '../../../services/contractor.service';
 import Contractor from '../../../models/entities/Contractor';
 import {ImageService} from '../../../services/image.service';
-import {SpecialityToString} from '../../../models/SpecialityEnum';
+import {SpecialityToString} from '../../../models/enums/SpecialityEnum';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 
 @Component({

@@ -8,7 +8,7 @@ import {ProfileType} from '../types/profile.type';
 import * as _ from 'lodash';
 import {CachedAuthenticationService} from './cached.authentication.service';
 import {RouteStoreUtility} from '../utilities/injectables/store/route.store.utility';
-import {Role} from '../models/RoleEnum';
+import {Role} from '../models/enums/RoleEnum';
 
 @Injectable()
 export class AuthenticationService {

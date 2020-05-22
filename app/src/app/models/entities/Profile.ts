@@ -1,4 +1,4 @@
-import {Role} from '../RoleEnum';
+import {Role} from '../enums/RoleEnum';
 import Contractor from './Contractor';
 
 export class Profile {

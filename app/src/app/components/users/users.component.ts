@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../services/user.service';
 import User from '../../models/entities/User';
-import {RoleToString} from '../../models/RoleEnum';
+import {RoleToString} from '../../models/enums/RoleEnum';
 
 @Component({
   selector: 'app-users',
