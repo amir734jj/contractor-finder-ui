@@ -12,7 +12,7 @@ import {FormErrorTable, resolveFormGroupErrors} from '../../../utilities/form.ut
 })
 export class RegisterComponent implements OnInit {
 
-  roleRef: Role = Role.InternalUser;
+  roleRef: Role = Role.Internal;
   roles = RoleNameTable;
   form: FormGroup;
   errorTable: FormErrorTable = [];
