@@ -4,7 +4,7 @@ import {ContractorService} from '../../../services/contractor.service';
 import Contractor from '../../../models/entities/Contractor';
 import {ImageService} from '../../../services/image.service';
 import {SpecialityToString} from '../../../models/SpecialityEnum';
-import {BsModalRef, BsModalService} from "ngx-bootstrap";
+import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-question-index',
