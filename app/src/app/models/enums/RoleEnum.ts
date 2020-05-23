@@ -6,7 +6,6 @@ export enum Role {
   Homeowner = 2
 }
 
-
 export const RoleNameTable = ResolveEnumNameTable(Role);
 
 export const RoleToString = (role: Role): string => EnumToString(RoleNameTable, role);

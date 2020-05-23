@@ -1,4 +1,8 @@
-Hello "name"!
+Hello {{ name }}!
 Welcome to contractor-finder-UI
-You have X homeowner projects
-There are X contractors available
+
+<div *ngIf="role === roles.Homeowner">
+  You have {{ projects.length}} homeowner projects
+
+  There are {{contractors.length}} contractors available
+</div>

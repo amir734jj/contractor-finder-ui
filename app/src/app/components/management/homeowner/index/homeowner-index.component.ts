@@ -13,7 +13,7 @@ export class HomeownerIndexComponent implements OnInit {
 
   form: FormGroup;
   errorTable: FormErrorTable = [];
-  private profile: HomeownerExtendedProfile = { address: '' };
+  private profile: HomeownerExtendedProfile = { address: '', projects: [] };
 
   constructor(private homeownerManageService: HomeownerManageService) {
     this.bind();

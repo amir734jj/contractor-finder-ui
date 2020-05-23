@@ -5,7 +5,6 @@ import Contractor from '../models/entities/Contractor';
 
 @Injectable()
 export class ContractorService extends CrudService<Contractor> {
-  public token: string;
 
   constructor(private http: HttpClient) {
     super();
