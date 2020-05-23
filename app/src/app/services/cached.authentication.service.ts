@@ -68,7 +68,7 @@ export class CachedAuthenticationService {
     this.resolveAuthInfo.clear();
   }
 
-  isAuthenticated() {
+  public isAuthenticated() {
     const {authenticated} = this.resolveAuthInfo();
 
     return authenticated;
