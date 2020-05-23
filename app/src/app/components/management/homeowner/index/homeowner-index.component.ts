@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {FormErrorTable} from '../../../../utilities/form.utility';
 import {HomeownerManageService} from '../../../../services/homeowner.manage.service';
 import {HomeownerExtendedProfile} from '../../../../models/management/HomeownerExtendedProfile';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-homeowner-index',
@@ -15,7 +16,7 @@ export class HomeownerIndexComponent implements OnInit {
   errorTable: FormErrorTable = [];
   private profile: HomeownerExtendedProfile = { address: '', projects: [] };
 
-  constructor(private homeownerManageService: HomeownerManageService) {
+  constructor(private router: Router, private homeownerManageService: HomeownerManageService) {
     this.bind();
   }
 
@@ -34,5 +35,9 @@ export class HomeownerIndexComponent implements OnInit {
     event.preventDefault();
 
     await this.homeownerManageService.update(this.form.value);
+  }
+
+  async goToProjects() {
+    await this.router.navigate(['./']);
   }
 }

@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+   import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {HomeownerExtendedProfile} from '../models/management/HomeownerExtendedProfile';
 import route from '../utilities/route.utility';
