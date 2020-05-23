@@ -24,7 +24,7 @@ let appRoutes: Routes = _.map([
   {path: 'login', component: LoginComponent, data: {disallowAuthenticated: true}},
   {path: 'register', component: RegisterComponent, data: {disallowAuthenticated: true}},
   {path: 'logout', component: LogoutComponent, data: {allowAnonymous: false}},
-  {path: 'welcome', component: WelcomeComponent, data: {allowAnonymous: false}},
+  {path: 'welcome', component: WelcomeComponent, data: {allowAnonymous: true}},
   {path: 'manage', component: ManagementComponent, data: {allowAnonymous: false}},
   {path: 'board', component: BoardComponent, data: {allowAnonymous: false}},
   {path: 'user', component: UsersComponent, data: {allowAnonymous: false}},
