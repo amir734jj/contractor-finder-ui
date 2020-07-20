@@ -33,7 +33,7 @@
     "express": "4.17.1",
     "guid-typescript": "latest",
     "jwt-decode": "2.2.0",
-    "lodash": "4.17.15",
+    "lodash": "4.17.19",
     "memoizee": "0.4.14",
     "moment": "2.24.0",
     "ngx-bootstrap": "5.3.2",
